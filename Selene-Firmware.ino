@@ -13,8 +13,22 @@ void loop() {
     inputString = "";
     stringComplete = false;
   }
-
-  delay(1000);
+  int value = analogRead(A0);
+  Serial.print("#DIST=");
+  Serial.println(value);
+  delay(500);
+  value = analogRead(A1);
+  Serial.print("#ANG=");
+  Serial.println(value);
+  delay(500);
+  value = analogRead(A2);
+  Serial.print("#INTN=");
+  Serial.println(value);
+  delay(500);
+  value = analogRead(A3);
+  Serial.print("#FORMA=");
+  Serial.println(value);
+  delay(500);
 }
 
 void processCommand(String command) {
@@ -27,8 +41,16 @@ void processCommand(String command) {
     int value = analogRead(analogPin);
     Serial.print("#VALOR=");
     Serial.println(value);
-  } else if (content == "LIGAR") {
+  } else if (content == "AVANCAR") {
     Serial.println("#LIGAR OK");
+  } else if (content == "RECUAR") {
+    Serial.println("#LIGAR REVERSO OK");
+  } else if (content == "DIREITA") {
+    Serial.println("#GIRANDO ANTI-HORARIO OK");
+  } else if (content == "ESQUERDA") {
+    Serial.println("#GIRANDO ANTI-HORARIO OK");
+  } else if (content == "PEGAR") {
+    Serial.println("#PEGAR OK");
   } else if (content.startsWith("CANAL=")) {
     String canal = content.substring(7); // Pega o texto após "CANAL="
     canal.trim();
